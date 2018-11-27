@@ -1,19 +1,59 @@
-import java.util.Scanner;
+import org.junit.Test;
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+
+import static java.sql.Types.NULL;
+import static org.junit.Assert.*;
 
 public class TaskTriangleTest {
-    public static boolean triangleTest(int a, int b, int c) {
-        if ((a + b) > c && (a + c) >  b && (b + c) > a)
-            return true;
-        else
-            return false;
-    }
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        
-        int s1 = sc.nextInt();
-        int s2 = sc.nextInt();
-        int s3 = sc.nextInt();
 
-        System.out.println(triangleTest(s1, s2, s3) ? "Треугольник существует.":"Треугольник не существует.");
+    @Test
+    public void isTriangle() {
+        assertTrue(Triangle.isTriangle(4,5,6));
+    }
+
+    @Test
+    public void numbersLessThenZero() {
+        assertFalse(Triangle.isTriangle(-3,-3,-2));
+    }
+
+    @Test
+    public void pointAisnotCorrect() {
+        assertFalse(Triangle.isTriangle(10,4,5));
+    }
+
+    @Test
+    public void pointBisnotCorrect() {
+        assertFalse(Triangle.isTriangle(4,10,5));
+    }
+
+    @Test
+    public void pointCisnotCorrect() {
+        assertFalse(Triangle.isTriangle(5,4,10));
+    }
+
+    @Test
+    public void pointAequalsZero() {
+        assertFalse(Triangle.isTriangle(0,5,3));
+    }
+
+    @Test
+    public void pointAequalsZero() {
+        assertFalse(Triangle.isTriangle(10,0,3));
+    }
+
+    @Test
+    public void pointAequalsZero() {
+        assertFalse(Triangle.isTriangle(6,5,0));
+    }
+
+    @Test
+    public void allSidesAreEqual() {
+        assertTrue(Triangle.isTriangle(5,5,5));
+    }
+
+    @Test
+    public void isoscelesTriangle() {
+        assertFalse(Triangle.isTriangle(9,5,9));
     }
 }
